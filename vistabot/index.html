@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista Del Mar — Guest Concierge</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 { font-size: 24px; margin-bottom: 8px; }
+        .header p { opacity: 0.9; font-size: 14px; }
+        .chat-container {
+            height: 400px;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .message {
+            margin-bottom: 15px;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .bot-message {
+            background: white;
+            border-radius: 12px 12px 12px 4px;
+            padding: 15px;
+            margin-right: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .quick-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+        .quick-btn {
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .quick-btn:hover {
+            background: #2a5298;
+            color: white;
+            border-color: #2a5298;
+        }
+        .footer {
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+        .footer a { color: #2a5298; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌊 Vista Del Mar</h1>
+            <p>Your Sea Ranch Concierge — Ask me anything!</p>
+        </div>
+        <div class="chat-container" id="chat">
+            <div class="message">
+                <div class="bot-message">
+                    Welcome to Vista Del Mar! I'm your AI concierge. How can I help you today?
+                </div>
+            </div>
+        </div>
+        <div class="quick-buttons">
+            <button class="quick-btn" onclick="ask('wifi')">📶 WiFi</button>
+            <button class="quick-btn" onclick="ask('restaurant')">🍽️ Restaurants</button>
+            <button class="quick-btn" onclick="ask('beach')">🏖️ Beaches</button>
+            <button class="quick-btn" onclick="ask('hot_tub')">♨️ Hot Tub</button>
+            <button class="quick-btn" onclick="ask('things_to_do')">🥾 Activities</button>
+            <button class="quick-btn" onclick="ask('emergency')">🚨 Emergency</button>
+        </div>
+        <div class="footer">
+            Need human help? <a href="mailto:OurSeaRanchHome@gmail.com">Contact Owner</a>
+        </div>
+    </div>
+
+    <script>
+        const responses = {
+            wifi: `📶 <strong>WiFi Network:</strong> VistaDelMar_Guest<br>🔑 <strong>Password:</strong> OceanView2024!<br><br><em>Note: Cell service is spotty — WiFi calling recommended.</em>`,
+            
+            restaurant: `🍽️ <strong>Dinner Recommendations:</strong><br><br>• <strong>Bruno's at Sea Ranch Lodge</strong> — 5 min, sunset views, special occasion<br>• <strong>Twofish Baking</strong> — 10 min, wood-fired pizza, casual<br>• <strong>Pine Cone Diner</strong> — 10 min, classic breakfast<br><br>What type of dining are you looking for?`,
+            
+            beach: `🏖️ <strong>Black Point Beach</strong> — 10 min walk, tide pools, sunset<br><br>🚗 <strong>Other options:</strong><br>• Gualala Point (8 min, sandy, $8 parking)<br>• Anchor Bay (12 min, calmer for swimming)<br><br>Check tide tables for best tide pooling!`,
+            
+            hot_tub: `♨️ <strong>Hot Tub Quick Start:</strong><br>1. Remove cover completely<br>2. Check temp (100–104°F)<br>3. Press jet button<br>4. <strong>Close cover tightly when done</strong><br><br>🚿 Shower before entering. No glassware.`,
+            
+            things_to_do: `🥾 <strong>What to Do Today:</strong><br><br>• <strong>Hike:</strong> Bluff Trail (walking distance)<br>• <strong>Beach:</strong> Black Point (tide pools)<br>• <strong>Wine:</strong> Annapolis Winery (20 min)<br>• <strong>Explore:</strong> Gualala shops & galleries<br><br>What's your energy level?`,
+            
+            emergency: `🚨 <strong>Emergency Contacts:</strong><br><br>• <strong>911</strong> — Fire, medical, crime<br>• <strong>Locksmith:</strong> (707) 964-4411<br>• <strong>Urgent Care:</strong> (707) 884-4122<br>• <strong>Property Owner:</strong> OurSeaRanchHome@gmail.com<br><br>Non-urgent issues? Message me first!`
+        };
+
+        function ask(topic) {
+            const chat = document.getElementById('chat');
+            const response = responses[topic] || "I'm not sure about that. Contact the owner for help!";
+            
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'message';
+            msgDiv.innerHTML = `<div class="bot-message">${response}</div>`;
+            chat.appendChild(msgDiv);
+            chat.scrollTop = chat.scrollHeight;
+        }
+    </script>
+</body>
+</html>

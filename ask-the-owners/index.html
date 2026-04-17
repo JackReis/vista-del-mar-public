@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask the Owners — Sea Ranch Guide</title>
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NTYP4DYYDJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NTYP4DYYDJ');
+        
+        // Bot interaction tracking
+        function trackBotEvent(action, label) {
+            gtag('event', action, {
+                event_category: 'chatbot',
+                event_label: label,
+                page_location: window.location.href,
+                page_title: document.title
+            });
+        }
+        
+        // Track widget opened on page load
+        window.addEventListener('load', function() {
+            trackBotEvent('bot_widget_loaded', 'ask_the_owners');
+        });
+    </script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            background: #f5f5f0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        .header h1 { 
+            font-size: 22px; 
+            margin-bottom: 8px; 
+            font-weight: normal;
+        }
+        .header p { 
+            opacity: 0.9; 
+            font-size: 14px;
+            font-style: italic;
+        }
+        .avatars {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .avatar-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .chat-container {
+            height: 350px;
+            overflow-y: auto;
+            padding: 20px;
+            background: #fafafa;
+        }
+        .message {
+            margin-bottom: 15px;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .bot-message {
+            background: white;
+            border-radius: 12px 12px 12px 4px;
+            padding: 15px;
+            margin-right: 40px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            border-left: 3px solid #2c3e50;
+        }
+        .bot-message strong {
+            color: #2c3e50;
+        }
+        .quick-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+        .quick-btn {
+            padding: 12px 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+            font-family: Georgia, serif;
+        }
+        .quick-btn:hover {
+            background: #2c3e50;
+            color: white;
+            border-color: #2c3e50;
+        }
+        .footer {
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+        .footer a { color: #2c3e50; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Ask the Owners</h1>
+            <p>John & Karen — Vista Del Mar, Sea Ranch</p>
+            <div class="avatars">
+                <img src="https://raw.githubusercontent.com/JackReis/vista-del-mar-public/main/media/john-karen.jpg" alt="John" class="avatar-img">
+                <img src="https://raw.githubusercontent.com/JackReis/vista-del-mar-public/main/media/john-karen.jpg" alt="Karen" class="avatar-img">
+            </div>
+        </div>
+        <div class="chat-container" id="chat">
+            <div class="message">
+                <div class="bot-message">
+                    Hi there! John here — or maybe Karen if you caught me napping. We own Vista Del Mar in Sea Ranch and love helping folks discover this stretch of coast. What brings you to our corner of California?
+                </div>
+            </div>
+        </div>
+        <div class="quick-buttons">
+            <button class="quick-btn" onclick="trackBotEvent('bot_click', 'restaurants'); ask('restaurants')">🍽️ Where to Eat</button>
+            <button class="quick-btn" onclick="trackBotEvent('bot_click', 'beaches'); ask('beaches')">🏖️ Beaches</button>
+            <button class="quick-btn" onclick="trackBotEvent('bot_click', 'activities'); ask('activities')">🥾 Things to Do</button>
+            <button class="quick-btn" onclick="trackBotEvent('bot_click', 'weather'); ask('weather')">🌤️ Best Time to Visit</button>
+            <button class="quick-btn" onclick="trackBotEvent('bot_click', 'location'); ask('location')">📍 About Sea Ranch</button>
+            <button class="quick-btn" onclick="trackBotEvent('bot_click', 'contact'); ask('contact')">📱 Message John & Karen</button>
+        </div>
+        <div class="footer">
+            Looking to book? <a href="https://www.oursearanchhome.com" target="_blank" onclick="trackBotEvent('booking_click', 'direct_website')">Book Direct</a> (best rates) or <a href="https://www.vrbo.com/317390" target="_blank" onclick="trackBotEvent('booking_click', 'vrbo')">VRBO</a>
+        </div>
+    </div>
+
+    <script>
+        const responses = {
+            restaurants: `🍽️ <strong>Our Favorite Spots:</strong><br><br>• <strong>Bruno's at Sea Ranch Lodge</strong> — 5 min, sunset views, special occasion<br>• <strong>Twofish Baking</strong> — 10 min, wood-fired pizza. Karen swears by their sourdough<br>• <strong>Pine Cone Diner</strong> — 10 min, classic breakfast. My go-to<br>• <strong>St. Orres</strong> — 12 min, fancy French-Russian (anniversary territory)<br>• <strong>Annapolis Winery</strong> — 20 min, coastal Pinot<br><br>What are you craving?`,
+            
+            beaches: `🏖️ <strong>Beach Guide:</strong><br><br>• <strong>Black Point</strong> — our backyard. Tide pools, dramatic rocks, best sunset<br>• <strong>Gualala Point</strong> — 8 min north, sandy, $8 parking, good for kids<br>• <strong>Anchor Bay</strong> — 12 min, calmer water for swimming<br><br>🌊 Check tide charts for tide pooling — low tide is magic.`,
+            
+            activities: `🥾 <strong>What to Do Here:</strong><br><br>• <strong>Hike</strong> — 50+ miles of trails, Bluff Trail is walking distance<br>• <strong>Golf</strong> — Sea Ranch Golf Links with ocean views<br>• <strong>Tide pools</strong> — Black Point at low tide<br>• <strong>Whale watching</strong> — Dec through May from the bluffs<br>• <strong>Stargazing</strong> — no light pollution here<br>• <strong>Gualala</strong> — shops, galleries, farmers market<br><br>What's your crew into?`,
+            
+            weather: `🌤️ <strong>When to Visit:</strong><br><br>• <strong>Best weather:</strong> May-October (less fog, warmest)<br>• <strong>Secret season:</strong> Jan-Feb (whale migration, lowest rates)<br>• <strong>Always bring:</strong> Layers. Even August can flip from 70°F to foggy 50°F in an hour.<br><br>The marine layer is part of the charm — just be ready for it.`,
+            
+            location: `📍 <strong>About Sea Ranch:</strong><br><br>We're 2.5 hours north of San Francisco, between Jenner and Gualala on Highway 1. Planned community from the 1960s, nature-focused, quiet (no street lights!), 10 miles of private coastline.<br><br>Perfect for families, couples, remote workers who need to actually disconnect.<br><br>Closest airports: Santa Rosa (45 min) or SFO (2.5 hrs).`,
+            
+            contact: `📱 <strong>Message John & Karen</strong><br><br>We'd love to hear from you! Reach us directly:<br><br>📞 <strong>Text/Call:</strong> <a href="tel:+17073223577" onclick="trackBotEvent('contact_click', 'phone')">(707) 322-3577</a><br>✉️ <a href="mailto:oursearanchhome@gmail.com" onclick="trackBotEvent('contact_click', 'email')">oursearanchhome@gmail.com</a><br><br>We typically respond within a few hours. If you're already booked, you'll have our direct numbers and the house guide with everything you need!`
+            
+            booking: `📅 <strong>Ready to book?</strong><br><br>We save house details (WiFi, lockbox codes, our personal guide) for confirmed guests.<br><br>You can check availability and book through:<br>• <a href="https://www.vrbo.com/317390" target="_blank">VRBO</a><br>• <a href="https://www.oursearanchhome.com" target="_blank">Our website</a><br><br>Once you're booked, we send everything you need!`
+        };
+
+        function ask(topic) {
+            // Track the response being shown
+            trackBotEvent('bot_response_shown', topic);
+            
+            const chat = document.getElementById('chat');
+            const response = responses[topic] || "Good question — let me pass that to Karen and John for you! Text us at (707) 322-3577 or email oursearanchhome@gmail.com";
+            
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'message';
+            msgDiv.innerHTML = `<div class="bot-message">${response}</div>`;
+            chat.appendChild(msgDiv);
+            chat.scrollTop = chat.scrollHeight;
+        }
+    </script>
+</body>
+</html>/script>
+</body>
+</html>
