@@ -10,11 +10,5 @@
   },
   "compatibility_flags": [
     "nodejs_compat"
-  ],
-  "routes": [
-    {
-      "pattern": "ask.oursearanchhome.com",
-      "custom_domain": true
-    }
   ]
 }
