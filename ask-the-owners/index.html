@@ -312,7 +312,7 @@
         </div>
 
         <div class="footer">
-            Need guest-specific details? Those are shared after booking confirmation.
+            Save up to 15% in fees by booking direct.
             <div class="footer-links">
                 <a class="footer-link secondary" href="https://www.oursearanchhome.com/book-now/" target="_blank" rel="noopener noreferrer" onclick="trackBotEvent('booking_click', 'direct_website')">Book Direct</a>
                 <a class="footer-link primary" href="https://www.vrbo.com/317390" target="_blank" rel="noopener noreferrer" onclick="trackBotEvent('booking_click', 'vrbo')">Book on VRBO</a>
@@ -326,7 +326,7 @@
         );
 
         const responses = {
-            restaurants: `🍽️ <strong>Our Favorite Spots:</strong><br><br>• ${mapLink("Bruno's at Sea Ranch Lodge", "Bruno's at Sea Ranch Lodge Sea Ranch")} — 5 min, sunset views, special occasion<br>• ${mapLink("Twofish Baking", "Twofish Baking Sea Ranch")} — 10 min, wood-fired pizza. Karen swears by their sourdough<br>• ${mapLink("Pine Cone Diner", "Pine Cone Diner Gualala")} — 10 min, classic breakfast. My go-to<br>• ${mapLink("St. Orres", "St. Orres Sea Ranch")} — 12 min, fancy French-Russian (anniversary territory)<br>• ${mapLink("Annapolis Winery", "Annapolis Winery Sea Ranch")} — 20 min, coastal Pinot<br><br>What are you craving?`,
+            restaurants: `🍽️ <strong>Our Favorite Spots:</strong><br><br>• ${mapLink("The Sea Ranch Lodge Dining Room", "The Sea Ranch Lodge Dining Room Sea Ranch")} — 5 min, sunset views, special occasion<br>• ${mapLink("Twofish Baking", "Twofish Baking Sea Ranch")} — 10 min, wood-fired pizza. Karen swears by their sourdough<br>• ${mapLink("Pine Cone Diner", "Pine Cone Diner Gualala")} — 10 min, classic breakfast. My go-to<br>• ${mapLink("St. Orres", "St. Orres Sea Ranch")} — 12 min, fancy French-Russian (anniversary territory)<br>• ${mapLink("Annapolis Winery", "Annapolis Winery Sea Ranch")} — 20 min, coastal Pinot<br><br>What are you craving?`,
 
             beaches: `🏖️ <strong>Beach Guide:</strong><br><br>• ${mapLink("Black Point Beach", "Black Point Beach Sea Ranch")} — our backyard. Tide pools, dramatic rocks, best sunset<br>• ${mapLink("Gualala Point", "Gualala Point Regional Park")} — 8 min north, sandy, $8 parking, good for kids<br>• ${mapLink("Anchor Bay", "Anchor Bay California")} — 12 min, calmer water for swimming<br><br>🌊 Check tide charts for tide pooling — low tide is magic.`,
 
@@ -349,7 +349,7 @@
             trackBotEvent('bot_response_shown', topic);
 
             const chat = document.getElementById('chat');
-            const response = responses[topic] || "Good question — let me pass that to Karen and John for you! Text us at (707) 322-3577 or email oursearanchhome@gmail.com";
+            const response = responses[topic] || "We share a full guest manual with check-in codes, Wi-Fi details, and house rules once your booking is confirmed. Looking for something specific before you book?";
 
             const msgDiv = document.createElement('div');
             msgDiv.className = 'message';
